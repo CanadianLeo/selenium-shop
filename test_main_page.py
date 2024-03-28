@@ -5,7 +5,6 @@ from pages.main_page import MainPage
 LINK = "http://selenium1py.pythonanywhere.com/"
 
 
-
 def test_guest_can_go_to_login_page(browser: WebDriver):
     page = MainPage(browser, LINK)
     page.open()
