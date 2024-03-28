@@ -21,7 +21,7 @@ pip install -r "requirements.txt"
 ```
 
 ### Run any of script
-Use th command for run the script
+Use the command for run the script
 ```bash
 pytest test_items.py # for ru language
 pytest --language=es test_items.py # for es language
