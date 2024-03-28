@@ -5,12 +5,12 @@ from .locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
-    def should_be_product_page(self: Self):
+    def should_be_product_page(self: Self) -> None:
         assert self.is_element_present(*ProductPageLocators.PRODUCT_PAGE), \
             "It is not product page"
 
 
-    def should_be_add_to_cart_button_exist_and_enable(self: Self):
+    def should_be_add_to_cart_button_exist_and_enable(self: Self) -> None:
         assert self.is_element_present(*ProductPageLocators.ADD_TO_CART_BUTTON), \
             "Add to cart button is not exist"
         
@@ -28,12 +28,12 @@ class ProductPage(BasePage):
         return product_price_element.text
 
 
-    def add_to_cart_button_click(self: Self):
+    def add_to_cart_button_click(self: Self) -> None:
         button = self.browser.find_element(*ProductPageLocators.ADD_TO_CART_BUTTON)
         button.click()
 
 
-    def add_to_cart(self: Self):
+    def add_to_cart(self: Self) -> None:
         self.should_be_product_page()
         self.should_be_add_to_cart_button_exist_and_enable()
         product_name = self.get_product_name()

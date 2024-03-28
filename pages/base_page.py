@@ -5,17 +5,17 @@ from selenium.common.exceptions import NoSuchElementException, NoAlertPresentExc
 
 
 class BasePage:
-    def __init__(self: Self, browser: WebDriver, url: str, timeout: int = 10):
+    def __init__(self: Self, browser: WebDriver, url: str, timeout: int = 10) -> None:
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
 
 
-    def open(self: Self):
+    def open(self: Self) -> None:
         self.browser.get(self.url)
 
 
-    def is_element_present(self: Self, how: str, what: str):
+    def is_element_present(self: Self, how: str, what: str) -> bool:
         try:
             self.browser.find_element(how, what)
         except (NoSuchElementException):
@@ -23,7 +23,7 @@ class BasePage:
         return True
 
 
-    def solve_quiz_and_get_code(self: Self):
+    def solve_quiz_and_get_code(self: Self) -> None:
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
         answer = str(math.log(abs((12 * math.sin(float(x))))))
