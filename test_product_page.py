@@ -18,7 +18,7 @@ LINKS = [
 ]
 
 @mark.parametrize('link', LINKS)
-def _test_guest_can_add_product_to_basket(browser: WebDriver, link: str) -> None:
+def test_guest_can_add_product_to_basket(browser: WebDriver, link: str) -> None:
     page = ProductPage(browser, link)
     page.open()
 
