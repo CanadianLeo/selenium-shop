@@ -23,5 +23,5 @@ pip install -r "requirements.txt"
 ### Run any of script
 Use the command for run the script
 ```bash
-pytest -v --tb=line --language=en test_main_page.py
+pytest -v --tb=line --language=en -m need_review
 ```
