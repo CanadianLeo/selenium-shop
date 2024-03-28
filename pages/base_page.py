@@ -7,12 +7,18 @@ from selenium.common.exceptions import NoSuchElementException, NoAlertPresentExc
 
 from pages.locators import BasePageLocators
 
+MAIN_LINK = "https://selenium1py.pythonanywhere.com/"
 
 class BasePage:
     def __init__(self: Self, browser: WebDriver, url: str, timeout: int = 10) -> None:
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
+
+
+    def go_to_basket_page(self: Self) -> None:
+        basket_link = self.browser.find_element(*BasePageLocators.BASKET_LINK)
+        basket_link.click()
 
 
     def go_to_login_page(self: Self) -> None:
@@ -56,15 +62,19 @@ class BasePage:
 
 
     def solve_quiz_and_get_code(self: Self) -> None:
-        alert = self.browser.switch_to.alert
-        x = alert.text.split(" ")[2]
-        answer = str(math.log(abs((12 * math.sin(float(x))))))
-        alert.send_keys(answer)
-        alert.accept()
         try:
             alert = self.browser.switch_to.alert
-            alert_text = alert.text
-            print(f"Your code: {alert_text}")
+            x = alert.text.split(" ")[2]
+            answer = str(math.log(abs((12 * math.sin(float(x))))))
+            alert.send_keys(answer)
             alert.accept()
+            try:
+                alert = self.browser.switch_to.alert
+                alert_text = alert.text
+                print(f"Your code: {alert_text}")
+                alert.accept()
+            except NoAlertPresentException:
+                print("No second alert presented")
+        
         except NoAlertPresentException:
-            print("No second alert presented")
+            pass
