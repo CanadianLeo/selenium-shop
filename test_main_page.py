@@ -11,7 +11,7 @@ def test_guest_can_go_to_login_page(browser: WebDriver):
     page.go_to_login_page()
 
 
-def test_guest_should_see_login_link(browser):
+def test_guest_should_see_login_link(browser: WebDriver):
     page = MainPage(browser, LINK)
     page.open()
     page.should_be_login_link()
