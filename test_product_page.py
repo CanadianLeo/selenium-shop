@@ -1,12 +1,24 @@
 from selenium.webdriver.chrome.webdriver import WebDriver
+from pytest import mark, param
 
 from pages.product_page import ProductPage
 
-LINK = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
+LINKS = [
+    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
+    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
+    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer2",
+    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer3",
+    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer4",
+    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer5",
+    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer6",
+    param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7", marks=mark.xfail),
+    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8",
+    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"
+]
 
-
-def test_guest_can_add_product_to_basket(browser: WebDriver) -> None:
-    page = ProductPage(browser, LINK)
+@mark.parametrize('link', LINKS)
+def test_guest_can_add_product_to_basket(browser: WebDriver, link) -> None:
+    page = ProductPage(browser, link)
     page.open()
 
     page.add_to_cart()
