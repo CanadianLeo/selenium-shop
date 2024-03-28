@@ -1,4 +1,4 @@
-# Selenium test repo
+# Selenium shop testing
 
 ## Dependencies
 - Python +3.9.*
