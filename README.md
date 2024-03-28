@@ -23,7 +23,5 @@ pip install -r "requirements.txt"
 ### Run any of script
 Use the command for run the script
 ```bash
-pytest test_items.py # for ru language
-pytest --language=es test_items.py # for es language
-pytest --language=fr test_items.py # for fr language
+pytest -v --tb=line --language=en test_main_page.py
 ```
