@@ -23,7 +23,7 @@ LINKS = [
 ]
 
 @mark.parametrize('link', LINKS)
-@mark.skip
+@mark.need_review
 def test_guest_can_add_product_to_basket(browser: WebDriver, link: str) -> None:
     page = ProductPage(browser, link)
     page.open()
@@ -60,6 +60,7 @@ def test_guest_should_see_login_link_on_product_page(browser: WebDriver) -> None
     page.should_be_login_link()
 
 
+@mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser: WebDriver) -> None:
     page = ProductPage(browser, LINK)
     page.open()
@@ -73,6 +74,7 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser: WebDriv
     page.open()
 
 
+@mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser: WebDriver) -> None:
     page = ProductPage(browser, LINK)
     page.open()
@@ -84,7 +86,7 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser: WebD
     basket_page.should_be_backet_empty()
 
 
-@mark.user
+@mark.signed_user
 class TestUserAddToBasketFromProductPage:
     @fixture(scope="function", autouse=True)
     def setup(self: Self, browser: WebDriver) -> None:
@@ -106,7 +108,7 @@ class TestUserAddToBasketFromProductPage:
 
 
     @mark.parametrize('link', LINKS)
-    @mark.skip
+    @mark.need_review
     def test_user_can_add_product_to_basket(self: Self, browser: WebDriver, link: str) -> None:
         page = ProductPage(browser, link)
         page.open()
